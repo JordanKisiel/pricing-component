@@ -14,18 +14,18 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Frontend Mentor | Interactive pricing component</title>
 </head>
-<body class="flex flex-col justify-center items-center h-screen w-screen bg-veryPaleBlue bg-[url('../images/bg-pattern.svg')] bg-no-repeat">
-    <main class="w-80">
-        <header class="flex flex-col justify-center items-center bg-[url('../images/pattern-circles.svg')] bg-no-repeat bg-center py-12 mb-5 space-y-3">
-            <h1 class="text-xl font-extrabold text-darkDesatBlue">Simple, traffic-based pricing</h1>
-            <p class="w-48 text-center text-sm text-grayBlue">Sign-up for our 30-day trial. No credit card required.</p>
+<body class="flex flex-col justify-center items-center h-screen w-screen bg-veryPaleBlue bg-[url('../images/bg-pattern.svg')] bg-no-repeat bg-left-top lg:bg-[length:100%_55%]">
+    <main class="w-80 lg:w-2/5 lg:max-w-[38rem]">
+        <header class="flex flex-col justify-center items-center text-center bg-[url('../images/pattern-circles.svg')] bg-no-repeat bg-center py-12 mb-5 space-y-3 lg:mb-14">
+            <h1 class="text-xl font-extrabold text-darkDesatBlue lg:text-3xl">Simple, traffic-based pricing</h1>
+            <p class="w-48 text-center text-sm text-grayBlue lg:w-auto lg:text-base">Sign-up for our 30-day trial. No credit card required.</p>
         </header>
-        <div class="bg-white flex flex-col items-center py-8 px-6 rounded-md drop-shadow-[0_25px_25px_rgba(0,0,0,0.10)]">
+        <div class="bg-white flex flex-col items-center py-8 rounded-md drop-shadow-[0_25px_25px_rgba(0,0,0,0.10)] lg:pt-12 lg:pb-6">
             <!-- Pricing Selection -->
-            <div class="flex flex-col items-center w-full gap-y-10 pb-8 border-solid border-b-[1px] border-lightGrayBlue">
-                <div class="uppercase text-grayBlue text-xs tracking-widest">100K Pageviews</div>
+            <div class="flex flex-col items-center w-full gap-y-10 px-6 pb-8 border-solid border-b-[1px] border-lightGrayBlue lg:grid grid-cols-2 lg:px-12 lg:gap-y-14 lg:pb-12">
+                <div class="uppercase text-grayBlue text-xs tracking-widest lg:order-1 lg:text-base">100K Pageviews</div>
                 
-                <div class="w-full relative">
+                <div class="w-full relative lg:order-3 lg:col-span-2">
                     <!-- Slider -->
                     <div class="bg-lightGrayBlue h-2 w-full rounded-full  overflow-hidden">
                         <div class="bg-softCyan w-1/2 h-full">
@@ -36,11 +36,11 @@
                     </button>
                 </div>
 
-                <div class="flex flex-row items-center text-grayBlue text-sm">
-                    <span class="text-3xl font-extrabold text-darkDesatBlue mr-3">$16.00</span>/ month
+                <div class="flex flex-row items-center text-grayBlue text-sm lg:order-2 lg:place-self-end lg:text-base">
+                    <span class="text-3xl font-extrabold text-darkDesatBlue mr-3 lg:text-4xl">$16.00</span>/ month
                 </div>
 
-                <div class="w-full flex flex-row justify-center items-center gap-x-1">
+                <div class="w-full flex flex-row justify-center items-center gap-x-1 lg:order-4 lg:col-span-2 lg:place-self-end lg:w-auto lg:mr-[10%]">
                     <span class="text-grayBlue text-xs">Monthly Billing</span>
 
                     <!-- Toggle -->
@@ -51,13 +51,13 @@
                     </button>
 
                     <span class="text-grayBlue text-xs">Yearly Billing</span>
-                    <span class="inline-block bg-lightGrayRed text-lightRed text-xs rounded-full px-2 py-0.5">-25%</span>
+                    <span class="inline-block bg-lightGrayRed text-lightRed text-xs rounded-full px-2 py-0.5">-25% <span class="hidden lg:inline">discount</span></span>
                 </div>
             </div>
 
             <!-- CTA -->
-            <div class="flex flex-col items-center pt-6 pb-1 gap-y-8">
-                <ul class="flex flex-col items-center text-grayBlue text-xs gap-y-3">
+            <div class="flex flex-col items-center pt-6 pb-1 gap-y-8 lg:flex-row lg:justify-between lg:w-full lg:pl-16 lg:pr-12 lg:pt-8 lg:pb-2">
+                <ul class="flex flex-col items-center text-grayBlue text-xs gap-y-3 lg:items-start">
                     <li class="pl-2">Unlimited websites</li>
                     <li class="pl-2">100% data ownership</li>
                     <li class="pl-2">Email reports</li>

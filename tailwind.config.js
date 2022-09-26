@@ -3,7 +3,7 @@ module.exports = {
   content: ['./*.html'],
   theme: {
     screens: {
-      //TODO: add breakpoints later
+      'lg': '1200px'
     },
     extend: {
       fontFamily: {
