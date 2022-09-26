@@ -14,61 +14,64 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Frontend Mentor | Interactive pricing component</title>
 </head>
-<body>
-    <header>
-        <h1>Simple, traffic-based pricing</h1>
-        <p>Sign-up for our 30-day trial. No credit card required.</p>
-    </header>
-    <main>
-        <!-- Pricing Selection -->
-        <div>
-            <div>100K Pageviews</div>
-            
-            <!-- Slider -->
-            <div>
-                <div>
+<body class="flex flex-col justify-center items-center h-screen w-screen bg-veryPaleBlue bg-[url('../images/bg-pattern.svg')] bg-no-repeat">
+    <main class="w-80">
+        <header class="flex flex-col justify-center items-center bg-[url('../images/pattern-circles.svg')] bg-no-repeat bg-center py-12 mb-5 space-y-3">
+            <h1 class="text-xl font-extrabold text-darkDesatBlue">Simple, traffic-based pricing</h1>
+            <p class="w-48 text-center text-sm text-grayBlue">Sign-up for our 30-day trial. No credit card required.</p>
+        </header>
+        <div class="bg-white flex flex-col items-center py-8 px-6 rounded-md drop-shadow-[0_25px_25px_rgba(0,0,0,0.10)]">
+            <!-- Pricing Selection -->
+            <div class="flex flex-col items-center w-full gap-y-10 pb-8 border-solid border-b-[1px] border-lightGrayBlue">
+                <div class="uppercase text-grayBlue text-xs tracking-widest">100K Pageviews</div>
+                
+                <div class="w-full relative">
+                    <!-- Slider -->
+                    <div class="bg-lightGrayBlue h-2 w-full rounded-full  overflow-hidden">
+                        <div class="bg-softCyan w-1/2 h-full">
+                            <!-- track -->
+                        </div>
+                    </div>
+                    <button class="absolute bg-[url('../images/icon-slider.svg')] bg-center bg-no-repeat bg-strongCyan h-11 w-11 rounded-full -top-5 left-1/2 shadow-xl shadow-softCyan">
+                    </button>
+                </div>
 
+                <div class="flex flex-row items-center text-grayBlue text-sm">
+                    <span class="text-3xl font-extrabold text-darkDesatBlue mr-3">$16.00</span>/ month
+                </div>
+
+                <div class="w-full flex flex-row justify-center items-center gap-x-1">
+                    <span class="text-grayBlue text-xs">Monthly Billing</span>
+
+                    <!-- Toggle -->
+                    <button class="bg-mediumGrayBlue w-10 h-5 rounded-full mx-1 px-1">
+                        <div class="w-3 h-3 rounded-full bg-white">
+                            <!-- toggle indicator -->
+                        </div>
+                    </button>
+
+                    <span class="text-grayBlue text-xs">Yearly Billing</span>
+                    <span class="inline-block bg-lightGrayRed text-lightRed text-xs rounded-full px-2 py-0.5">-25%</span>
                 </div>
             </div>
-            <button>
 
-            </button>
+            <!-- CTA -->
+            <div class="flex flex-col items-center pt-6 pb-1 gap-y-8">
+                <ul class="flex flex-col items-center text-grayBlue text-xs gap-y-3">
+                    <li class="pl-2">Unlimited websites</li>
+                    <li class="pl-2">100% data ownership</li>
+                    <li class="pl-2">Email reports</li>
+                </ul>
 
-            <div>
-                <span>$16.00</span>/month
+                <button class="bg-darkDesatBlue text-paleBlue text-xs rounded-full px-12 py-3">Start my trial</button>
             </div>
-
-            <div>
-                <span>Monthly Billing</span>
-
-                <!-- Toggle -->
-                <button>
-                    <div>
-
-                    </div>
-                </button>
-
-                <span>Yearly Billing</span>
-                <span>-25%</span>
-            </div>
-        </div>
-
-        <!-- CTA -->
-        <div>
-            <ul>
-                <li>Unlimited websites</li>
-                <li>100% data ownership</li>
-                <li>Email reports</li>
-            </ul>
-
-            <button></button>
         </div>
     </main>
     
-    <footer>
-        <div class="attribution">
-            Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-            Coded by <a href="#">Your Name Here</a>.
+    <footer class="w-80 absolute bottom-3">
+        <div class="text-center text-sm text-grayBlue">
+            Challenge by <a class="underline text-darkDesatBlue" href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+            Coded by <a class="underline text-darkDesatBlue" href="http://robojojo.co/">Jordan Kisiel</a>.
         </div>
     </footer> 
 </body>
