@@ -1,135 +1,128 @@
 //pricing options
 //page views and their associated prices per month in dollars
 const pricingOptions = {
-    '10K pageviews': 8,
-    '50K pageviews': 12,
-    '100K pageviews': 16,
-    '500k pageviews': 24,
-    '1M pageviews': 36
+    1: {'10K pageviews': 8},
+    2: {'50K pageviews': 12},
+    3: {'100K pageviews': 16},
+    4: {'500k pageviews': 24},
+    5: {'1M pageviews': 36}
 }
+
+//start with montly pricing
+let timeFrameIsMonthly = true;
 
 //grab elements
 
-const sliderBtn = document.getElementById('sliderBtn');
-const body = document.getElementsByTagName('body');
 const toggleBtn = document.getElementById('toggleBtn');
 const timeFrame = document.getElementById('timeFrame');
-const sliderTrack = document.getElementById('sliderTrack');
+const rangeSlider = document.getElementById('rangeSlider');
+const thumbGlow = document.getElementById('thumbGlow');
+const pageViewsContainer = document.getElementById('pageViewsContainer');
+const priceContainer = document.getElementById('priceContainer');
 
 //add listeners
 
 toggleBtn.addEventListener('click', () => {
     switchToggleAppearance();
     switchTimeFrame();
+    updateInfo(rangeSlider.value, timeFrameIsMonthly);
 })
 
+rangeSlider.addEventListener('input', () => {
+    updateInfo(rangeSlider.value);
 
+    moveTrack();
+    moveGlow();
+
+    updateInfo(rangeSlider.value, timeFrameIsMonthly);
+})
+
+//incase window gets resized, adjust positioning
+window.addEventListener('resize', () => {
+    moveTrack();
+    moveGlow();
+})
+
+//functions
 
 function switchToggleAppearance(){
     //change color
-    toggleBtn.classList.toggle('bg-strongCyan');
     toggleBtn.classList.toggle('bg-mediumGrayBlue');
+    toggleBtn.classList.toggle('bg-strongCyan');
+    
 
     //change position of toggle indicator
-    toggleBtn.classList.toggle('justify-end');
     toggleBtn.classList.toggle('justify-start'); 
+    toggleBtn.classList.toggle('justify-end');
+    
 }
 
 //toggle between monthly and yearly
 function switchTimeFrame(){
-    if(timeFrame.innerText === '/ month'){
+    if(timeFrameIsMonthly){
         timeFrame.innerText = '/ year';
+        timeFrameIsMonthly = false;
     }
     else{
-        timeFrame.innerText = '/ month';
+        timeFrame.innerText = '/ month'; 
+        timeFrameIsMonthly = true;
     }
 }
 
+function moveGlow(){
+    let rangeValue = rangeSlider.value;
+    let ratio = rangeValue / rangeSlider.max;
+    let thumbPosition = ratio * rangeSlider.offsetWidth;
+    thumbGlow.style.left = `${thumbPosition - (ratio * thumbGlow.offsetWidth)}px`;
+}
 
+function moveTrack(){
+    let trackGradientLength = rangeSlider.value;
+    let gradient = `linear-gradient(90deg, hsl(174, 77%, 80%) ${trackGradientLength}%, hsl(224, 65%, 95%) ${trackGradientLength}%)`;
+    rangeSlider.style.backgroundImage = gradient;
+}
 
+//return 1 of five possible positions
+function getSliderState(value){
+    let state;
+    
+    switch(value){
+        case 0:
+            state = 1;
+            break;
+        case 25:
+            state = 2;
+            break;
+        case 50:
+            state = 3;
+            break;
+        case 75:
+            state = 4;
+            break;
+        case 100:
+            state = 5;
+            break;
+        default:
+            console.log('number was not passed in');
+    }
+    
+    return state;
+}
 
-/*
-
-Drag code ======= Come back to this if I can't figure out what to do
-
-body[0].addEventListener("touchstart", dragStart, false);
-body[0].addEventListener("touchend", dragEnd, false);
-body[0].addEventListener("touchmove", drag, false);
-body[0].addEventListener("mousedown", dragStart, false);
-body[0].addEventListener("mouseup", dragEnd, false);
-body[0].addEventListener("mousemove", drag, false);
-
-
-//drag variables
-let active = false;
-let currentX = 0;
-let initialX = 0;
-let xOffset = 0;
-let sliderLeftConstraint = sliderTrack.getBoundingClientRect().left;
-let sliderRightConstraint = sliderTrack.getBoundingClientRect().right;
-
-//drag functions
-function dragStart(e){
-    if(e.type === 'touchStart'){
-        initialX = e.touches[0].clientX - xOffset;
+function updateInfo(value, isMonthly){
+    let state = getSliderState(parseInt(value));
+    pageViewsContainer.innerText = Object.keys(pricingOptions[state])[0];
+    let price = Object.values(pricingOptions[state])[0];
+    if(isMonthly){
+        priceContainer.innerText = `$${price}.00`;
     }
     else{
-        initialX = e.clientX - xOffset;
-    }
-
-    if(e.target === sliderBtn){
-        active = true;
+        priceContainer.innerText = `$${price * 12 * 0.75}.00`;
     }
 }
 
-function drag(e){
-    if(active){
-        e.preventDefault();
 
-        if(e.type === "touchmove"){
-            currentX = e.touches[0].clientX - initialX;
-        }
-        else{
-            currentX = e.clientX - initialX;
-        }
-
-        xOffset = currentX;
-
-        
-        if(e.clientX <= sliderLeftConstraint + sliderBtn.offsetWidth){
-            setPosition(0, sliderBtn);
-            
-            currentX = 0;
-            initialX = 0;
-            xOffset = 0;
-
-
-        }
-        else if(sliderRightConstraint < currentX){
-            setTranslate(sliderRightConstraint, sliderBtn);
-        }
-        else{
-            setTranslate(currentX, sliderBtn);
-        }
-
-    }
-}
-
-function dragEnd(e){
-    initialX = currentX;
-
-    active = false;
-}
-
-function setTranslate(xPos, el){
-    el.style.transform = `translateX(${xPos}px)`
-}
-
-function setPosition(xPos, el){
-    el.style.left = `${xPos}px`;
-}
-
-
-
-
-*/
+//initial calls
+updateInfo(rangeSlider.value, timeFrameIsMonthly);
+moveTrack();
+moveGlow();
